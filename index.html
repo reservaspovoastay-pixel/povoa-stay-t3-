@@ -1,41 +1,295 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Póvoa Stay T3 Aver-o-Mar</title>
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;color:#222;background:#f7f5f0}
-header{padding:80px 24px 55px;background:#ddd;text-align:center}
-h1{font-size:42px;margin:10px 0}p{font-size:18px;line-height:1.5}
-main{max-width:800px;margin:auto;padding:30px 22px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{background:white;padding:20px;border-radius:14px}
-.cta{margin-top:28px;padding:25px;background:#234f59;color:white;border-radius:16px}
-a{display:inline-block;background:white;color:#234f59;padding:13px 18px;border-radius:10px;text-decoration:none;font-weight:bold}
-footer{text-align:center;padding:25px;color:#777}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f3ef;
+  color: #222;
+}
+
+header {
+  background: #dcdcdc;
+  text-align: center;
+  padding: 70px 20px;
+}
+
+header .local {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 46px;
+  margin: 10px 0;
+}
+
+header p {
+  font-size: 21px;
+  margin: 15px auto;
+  max-width: 600px;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+.intro {
+  font-size: 21px;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.box {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.box b {
+  font-size: 21px;
+}
+
+.reservas {
+  margin-top: 45px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+.reservas h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 0;
+}
+
+.reservas p {
+  text-align: center;
+  color: #555;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 18px;
+  margin-bottom: 7px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.email-info {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  header {
+    padding: 55px 15px;
+  }
+
+  .reservas {
+    padding: 22px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div>Aver-o-Mar · Póvoa de Varzim</div>
-<h1>Póvoa Stay T3</h1>
-<p>Um apartamento confortável para as suas férias.</p>
+  <div class="local">📍 Aver-o-Mar · Póvoa de Varzim</div>
+
+  <h1>Póvoa Stay T3</h1>
+
+  <p>
+    Um apartamento confortável para as suas férias.
+  </p>
 </header>
+
 <main>
-<p>Desfrute de uma estadia tranquila na Póvoa de Varzim, perto das praias e de tudo o que precisa para umas férias em família.</p>
-<div class="grid">
-<div class="box">🛏️ <b>3 quartos</b><br>Espaço para toda a família.</div>
-<div class="box">🧺 <b>Lavar e secar</b><br>Máquina de lavar e secar roupa.</div>
-<div class="box">🏖️ <b>Perto da praia</b><br>Cerca de 3 minutos de carro.</div>
-<div class="box">📍 <b>Aver-o-Mar</b><br>Perto da Póvoa de Varzim.</div>
-</div>
-<div class="cta">
-<h2>Reservas</h2>
-<p>Consulte a disponibilidade e peça a sua reserva.</p>
-<a href="mailto:reservas.povoastay@gmail.com">Pedir reserva</a>
-</div>
+
+  <div class="intro">
+    Desfrute de uma estadia tranquila na Póvoa de Varzim,
+    perto das praias e de tudo o que precisa para umas férias em família.
+  </div>
+
+  <div class="grid">
+
+    <div class="box">
+      🛏️ <b>3 quartos</b><br>
+      Espaço para toda a família.
+    </div>
+
+    <div class="box">
+      🧺 <b>Lavar e secar</b><br>
+      Máquina de lavar e secar roupa.
+    </div>
+
+    <div class="box">
+      🏖️ <b>Perto da praia</b><br>
+      Cerca de 3 minutos de carro.
+    </div>
+
+    <div class="box">
+      📍 <b>Aver-o-Mar</b><br>
+      Póvoa de Varzim, Portugal.
+    </div>
+
+  </div>
+
+  <section class="reservas">
+
+    <h2>📅 Pedir uma reserva</h2>
+
+    <p>
+      Preencha o formulário e envie-nos o seu pedido.
+      Entraremos em contacto por email para confirmar a disponibilidade.
+    </p>
+
+    <form
+      action="mailto:reservas.povoastay@gmail.com"
+      method="post"
+      enctype="text/plain"
+    >
+
+      <label for="nome">Nome</label>
+      <input
+        type="text"
+        id="nome"
+        name="Nome"
+        placeholder="O seu nome"
+        required
+      >
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="Email"
+        placeholder="O seu email"
+        required
+      >
+
+      <label for="entrada">Data de entrada</label>
+      <input
+        type="date"
+        id="entrada"
+        name="Data de entrada"
+        required
+      >
+
+      <label for="saida">Data de saída</label>
+      <input
+        type="date"
+        id="saida"
+        name="Data de saída"
+        required
+      >
+
+      <label for="hospedes">Número de hóspedes</label>
+      <select id="hospedes" name="Número de hóspedes" required>
+        <option value="">Selecionar</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+      </select>
+
+      <label for="mensagem">Mensagem</label>
+      <textarea
+        id="mensagem"
+        name="Mensagem"
+        placeholder="Alguma informação ou pedido especial?"
+      ></textarea>
+
+      <button type="submit">
+        Enviar pedido de reserva
+      </button>
+
+    </form>
+
+    <div class="email-info">
+      Os pedidos serão enviados para
+      reservas.povoastay@gmail.com
+    </div>
+
+  </section>
+
 </main>
-<footer>Póvoa Stay T3 Aver-o-Mar</footer>
+
+<footer>
+  © 2026 Póvoa Stay T3 · Aver-o-Mar · Póvoa de Varzim
+</footer>
+
 </body>
 </html>
