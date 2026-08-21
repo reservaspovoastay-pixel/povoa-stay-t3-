@@ -404,32 +404,47 @@ footer {
 </div>
 
 <script>
-const fotos = document.querySelectorAll('.fotos img');
 let fotoAtual = 0;
 
-fotos.forEach((foto, index) => {
-  foto.addEventListener('click', () => {
-    fotoAtual = index;
-    abrirFoto();
-  });
-});
+const fotos = Array.from(document.querySelectorAll('.fotos img'));
+const lightbox = document.getElementById('lightbox');
+const fotoGrande = document.getElementById('fotoGrande');
 
-function abrirFoto() {
-  document.getElementById('fotoGrande').src = fotos[fotoAtual].src;
-  document.getElementById('lightbox').classList.add('ativo');
+function abrirFoto(index) {
+    fotoAtual = index;
+    fotoGrande.src = fotos[fotoAtual].src;
+    lightbox.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
 }
 
 function fecharFoto() {
-  document.getElementById('lightbox').classList.remove('ativo');
+    lightbox.classList.remove('ativo');
+    document.body.style.overflow = '';
 }
 
 function mudarFoto(direcao) {
-  fotoAtual += direcao;
+    fotoAtual += direcao;
 
-  if (fotoAtual < 0) fotoAtual = fotos.length - 1;
-  if (fotoAtual >= fotos.length) fotoAtual = 0;
+    if (fotoAtual < 0) {
+        fotoAtual = fotos.length - 1;
+    }
 
-  abrirFoto();
+    if (fotoAtual >= fotos.length) {
+        fotoAtual = 0;
+    }
+
+    fotoGrande.src = fotos[fotoAtual].src;
 }
-</script></body>
+
+fotos.forEach((foto, index) => {
+    foto.addEventListener('click', () => abrirFoto(index));
+
+    foto.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        abrirFoto(index);
+    }, { passive: false });
+});
+</script>
+
+</body>
 </html>
