@@ -199,7 +199,59 @@ footer {
         font-size: 26px;
     }
 }
-</style>
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.ativo {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.lightbox button {
+    position: absolute;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 42px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.lightbox .fechar {
+    top: 20px;
+    right: 20px;
+}
+
+.lightbox .anterior {
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox .seguinte {
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fotos img {
+    cursor: pointer;
+}</style>
 </head>
 
 <body>
@@ -344,5 +396,40 @@ footer {
   © 2026 Póvoa Stay T3 · Aver-o-Mar · Póvoa de Varzim
 </footer>
 
-</body>
+<div id="lightbox" class="lightbox">
+  <button class="fechar" onclick="fecharFoto()">×</button>
+  <button class="anterior" onclick="mudarFoto(-1)">‹</button>
+  <img id="fotoGrande" src="" alt="Foto do apartamento">
+  <button class="seguinte" onclick="mudarFoto(1)">›</button>
+</div>
+
+<script>
+const fotos = document.querySelectorAll('.fotos img');
+let fotoAtual = 0;
+
+fotos.forEach((foto, index) => {
+  foto.addEventListener('click', () => {
+    fotoAtual = index;
+    abrirFoto();
+  });
+});
+
+function abrirFoto() {
+  document.getElementById('fotoGrande').src = fotos[fotoAtual].src;
+  document.getElementById('lightbox').classList.add('ativo');
+}
+
+function fecharFoto() {
+  document.getElementById('lightbox').classList.remove('ativo');
+}
+
+function mudarFoto(direcao) {
+  fotoAtual += direcao;
+
+  if (fotoAtual < 0) fotoAtual = fotos.length - 1;
+  if (fotoAtual >= fotos.length) fotoAtual = 0;
+
+  abrirFoto();
+}
+</script></body>
 </html>
