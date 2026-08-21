@@ -398,33 +398,54 @@ document.getElementById("saida").addEventListener("change", verificarDisponibili
 </script>
       
 <label for="adultos">Adultos</label>
-<select id="adultos" name="Adultos" required
-  onchange="if((+this.value + +(document.getElementById('criancas').value || 0)) > 8){alert('O máximo é de 8 pessoas no total.');this.value='';}">
+<select id="adultos" name="Adultos" required>
   <option value="">Selecionar</option>
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-  <option>6</option>
-  <option>7</option>
-  <option>8</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
 </select>
 
 <label for="criancas">Crianças</label>
-<select id="criancas" name="Crianças" required
-  onchange="if((+this.value + +(document.getElementById('adultos').value || 0)) > 8){alert('O máximo é de 8 pessoas no total.');this.value='';}">
+<select id="criancas" name="Crianças" required>
   <option value="">Selecionar</option>
-  <option>0</option>
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-  <option>6</option>
-  <option>7</option>
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
 </select>
-      <label for="mensagem">Mensagem</label>
+
+<script>
+const adultos = document.getElementById("adultos");
+const criancas = document.getElementById("criancas");
+
+function atualizarLimite() {
+  const totalAdultos = Number(adultos.value || 0);
+  const maxCriancas = 8 - totalAdultos;
+
+  Array.from(criancas.options).forEach(opcao => {
+    if (opcao.value !== "") {
+      opcao.disabled = Number(opcao.value) > maxCriancas;
+    }
+  });
+
+  if (Number(criancas.value || 0) > maxCriancas) {
+    criancas.value = "";
+  }
+}
+
+adultos.addEventListener("change", atualizarLimite);
+criancas.addEventListener("change", atualizarLimite);
+</script>
+</select> <label for="mensagem">Mensagem</label>
       <textarea
         id="mensagem"
         name="Mensagem"
