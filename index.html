@@ -277,30 +277,173 @@ footer {
     perto das praias e de tudo o que precisa para umas férias em família.
   </div>
 
-  <div class="grid">
+  <style>
+.info-titulo {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 38px 0 18px;
+  border-bottom: 2px solid #8a9b7b;
+  padding-bottom: 8px;
+}
 
-    <div class="box">
-      🛏️ <b>3 quartos</b><br>
-      Espaço para toda a família.
-    </div>
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
 
-    <div class="box">
-      🧺 <b>Lavar e secar</b><br>
-      Máquina de lavar e secar roupa.
-    </div>
+.info-item {
+  text-align: center;
+  padding: 14px 6px;
+  font-size: 15px;
+}
 
-    <div class="box">
-      🏖️ <b>Perto da praia</b><br>
-      Cerca de 3 minutos de carro.
-    </div>
+.info-item .icone {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 7px;
+}
 
-    <div class="box">
-      📍 <b>Aver-o-Mar</b><br>
-      Póvoa de Varzim, Portugal.
-    </div>
+.info-extra {
+  background: #eef1e9;
+  border: 1px solid #cbd4c0;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 16px;
+}
 
+.perto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.perto {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 15px 8px;
+  font-weight: bold;
+}
+
+.perto span {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 7px;
+}
+
+@media (max-width:600px) {
+  .info-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .info-item {
+    font-size: 13px;
+  }
+
+  .info-item .icone {
+    font-size: 27px;
+  }
+
+  .perto-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .perto {
+    font-size: 13px;
+  }
+}
+</style>
+
+<h2 class="info-titulo">🏠 No apartamento</h2>
+
+<div class="info-grid">
+
+  <div class="info-item">
+    <span class="icone">📶</span>
+    Wi-Fi<br>gratuito
   </div>
 
+  <div class="info-item">
+    <span class="icone">📺</span>
+    TV<br>gigante
+  </div>
+
+  <div class="info-item">
+    <span class="icone">🍳</span>
+    Cozinha<br>equipada
+  </div>
+
+  <div class="info-item">
+    <span class="icone">☕</span>
+    Máquina<br>de café
+  </div>
+
+  <div class="info-item">
+    <span class="icone">🧺</span>
+    Lavar e<br>secar roupa
+  </div>
+
+  <div class="info-item">
+    <span class="icone">🛏️</span>
+    3<br>quartos
+  </div>
+
+  <div class="info-item">
+    <span class="icone">🚿</span>
+    2 casas<br>de banho
+  </div>
+
+  <div class="info-item">
+    <span class="icone">🛋️</span>
+    Sala de estar<br>confortável
+  </div>
+
+</div>
+
+<div class="info-extra">
+  ⭐ Roupa de cama e toalhas · Louça e utensílios · Varanda
+</div>
+
+<h2 class="info-titulo">📍 Tudo perto de si</h2>
+
+<div class="perto-grid">
+
+  <div class="perto">
+    <span>🥖</span>
+    Padaria<br>próxima
+  </div>
+
+  <div class="perto">
+    <span>🍎</span>
+    Frutaria<br>próxima
+  </div>
+
+  <div class="perto">
+    <span>🍽️</span>
+    Restaurantes<br>próximos
+  </div>
+
+  <div class="perto">
+    <span>🛒</span>
+    Comércio<br>local
+  </div>
+
+  <div class="perto">
+    <span>🛣️</span>
+    EN13 a<br>poucos metros
+  </div>
+
+  <div class="perto">
+    <span>🅿️</span>
+    Estacionamento<br>fácil
+  </div>
+
+</div>
  
 </section>
   <section class="reservas">
