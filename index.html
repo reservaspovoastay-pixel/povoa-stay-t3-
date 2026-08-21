@@ -344,161 +344,21 @@ footer {
     placeholder="O seu número de telefone"
     required
 > 
-<div class="calendario-reserva">
+<label for="entrada">Data de entrada</label>
+<input
+  type="date"
+  id="entrada"
+  name="Data de entrada"
+  required
+>
 
-  <h3>📅 Escolha a sua semana</h3>
-  <p class="info-calendario">
-    Selecione uma semana disponível para a sua estadia.
-  </p>
-
-  <div class="legenda-calendario">
-    🟢 Disponível &nbsp; 🟡 Pendente &nbsp; 🔴 Ocupado
-  </div>
-
-  <div id="semanas"></div>
-
-  <input type="hidden" id="entrada" name="Data de entrada" required>
-  <input type="hidden" id="saida" name="Data de saída" required>
-
-  <p id="semana-escolhida"></p>
-
-</div>
-
-<style>
-.calendario-reserva {
-  margin: 25px 0;
-  padding: 20px;
-  background: #f8f8f8;
-  border-radius: 18px;
-}
-
-.calendario-reserva h3 {
-  margin-top: 0;
-  text-align: center;
-}
-
-.info-calendario {
-  text-align: center;
-  color: #666;
-}
-
-.legenda-calendario {
-  text-align: center;
-  font-size: 14px;
-  margin: 15px 0 20px;
-}
-
-.semana-reserva {
-  padding: 14px;
-  margin: 8px 0;
-  border-radius: 12px;
-  background: white;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.semana-reserva.disponivel {
-  border-left: 8px solid #20c933;
-}
-
-.semana-reserva.pendente {
-  border-left: 8px solid #ffd21c;
-  cursor: not-allowed;
-}
-
-.semana-reserva.ocupado {
-  border-left: 8px solid #e32626;
-  cursor: not-allowed;
-}
-
-.semana-reserva.selecionada {
-  outline: 3px solid #222;
-}
-
-#semana-escolhida {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 15px;
-}
-</style>
-
-<script>
-const semanas = [
-  ["2 maio", "9 maio", "disponivel"],
-  ["9 maio", "16 maio", "disponivel"],
-  ["16 maio", "23 maio", "disponivel"],
-  ["23 maio", "30 maio", "disponivel"],
-  ["30 maio", "6 junho", "disponivel"],
-
-  ["6 junho", "13 junho", "disponivel"],
-  ["13 junho", "20 junho", "disponivel"],
-  ["20 junho", "27 junho", "disponivel"],
-  ["27 junho", "4 julho", "disponivel"],
-
-  ["4 julho", "11 julho", "disponivel"],
-  ["11 julho", "18 julho", "disponivel"],
-  ["18 julho", "25 julho", "disponivel"],
-  ["25 julho", "1 agosto", "disponivel"],
-
-  ["1 agosto", "8 agosto", "disponivel"],
-  ["8 agosto", "15 agosto", "pendente"],
-  ["15 agosto", "22 agosto", "pendente"],
-  ["22 agosto", "29 agosto", "pendente"],
-  ["29 agosto", "5 setembro", "disponivel"],
-
-  ["5 setembro", "12 setembro", "disponivel"],
-  ["12 setembro", "19 setembro", "disponivel"],
-  ["19 setembro", "26 setembro", "disponivel"],
-  ["26 setembro", "3 outubro", "disponivel"],
-
-  ["3 outubro", "10 outubro", "disponivel"],
-  ["10 outubro", "17 outubro", "disponivel"],
-  ["17 outubro", "24 outubro", "disponivel"],
-  ["24 outubro", "31 outubro", "disponivel"],
-  ["31 outubro", "7 novembro", "disponivel"],
-
-  ["7 novembro", "14 novembro", "disponivel"],
-  ["14 novembro", "21 novembro", "disponivel"],
-  ["21 novembro", "28 novembro", "disponivel"],
-  ["28 novembro", "5 dezembro", "disponivel"]
-];
-
-const container = document.getElementById("semanas");
-
-semanas.forEach((semana, indice) => {
-
-  const div = document.createElement("div");
-
-  div.className = "semana-reserva " + semana[2];
-
-  const emoji =
-    semana[2] === "disponivel" ? "🟢" :
-    semana[2] === "pendente" ? "🟡" : "🔴";
-
-  div.innerHTML =
-    emoji + " " + semana[0] + " → " + semana[1];
-
-  if (semana[2] === "disponivel") {
-
-    div.onclick = function() {
-
-      document.querySelectorAll(".semana-reserva")
-        .forEach(x => x.classList.remove("selecionada"));
-
-      div.classList.add("selecionada");
-
-      document.getElementById("semana-escolhida").innerText =
-        "Semana escolhida: " + semana[0] + " → " + semana[1];
-
-      document.getElementById("entrada").value = semana[0];
-      document.getElementById("saida").value = semana[1];
-    };
-  }
-
-  container.appendChild(div);
-});
-</script>
+<label for="saida">Data de saída</label>
+<input
+  type="date"
+  id="saida"
+  name="Data de saída"
+  required
+>
       >
       <label for="hospedes">Número de hóspedes</label>
       <select id="hospedes" name="Número de hóspedes" required>
