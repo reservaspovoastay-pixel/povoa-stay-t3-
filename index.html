@@ -397,19 +397,33 @@ document.getElementById("entrada").addEventListener("change", verificarDisponibi
 document.getElementById("saida").addEventListener("change", verificarDisponibilidade);
 </script>
       
-      <label for="hospedes">Número de hóspedes</label>
-      <select id="hospedes" name="Número de hóspedes" required>
-        <option value="">Selecionar</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-      </select>
+<label for="adultos">Adultos</label>
+<select id="adultos" name="Adultos" required
+  onchange="if((+this.value + +(document.getElementById('criancas').value || 0)) > 8){alert('O máximo é de 8 pessoas no total.');this.value='';}">
+  <option value="">Selecionar</option>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+</select>
 
+<label for="criancas">Crianças</label>
+<select id="criancas" name="Crianças" required
+  onchange="if((+this.value + +(document.getElementById('adultos').value || 0)) > 8){alert('O máximo é de 8 pessoas no total.');this.value='';}">
+  <option value="">Selecionar</option>
+  <option>0</option>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+</select>
       <label for="mensagem">Mensagem</label>
       <textarea
         id="mensagem"
