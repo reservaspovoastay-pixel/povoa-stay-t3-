@@ -344,204 +344,57 @@ footer {
     placeholder="O seu número de telefone"
     required
 > 
-<div class="calendario-reserva">
-  <h3>📅 Escolha a sua semana</h3>
+<label for="entrada">Data de entrada</label>
+<input type="date" id="entrada" name="Data de entrada" required>
 
-  <div class="legenda-calendario">
-    <span>🟢 Disponível</span>
-    <span>🟡 Pendente</span>
-    <span>🔴 Ocupado</span>
-  </div>
+<label for="saida">Data de saída</label>
+<input type="date" id="saida" name="Data de saída" required>
 
-  <div id="calendario-semanas"></div>
-
-  <input type="hidden" id="entrada" name="Data de entrada">
-  <input type="hidden" id="saida" name="Data de saída">
-
-  <p id="semana-escolhida"></p>
-</div>
-
-<style>
-.calendario-reserva {
-  margin: 20px 0;
-  padding: 16px;
-  background: #f8f8f8;
-  border-radius: 16px;
-}
-
-.calendario-reserva h3 {
-  text-align: center;
-  margin: 0 0 12px;
-}
-
-.legenda-calendario {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-
-.mes-calendario {
-  margin-top: 16px;
-}
-
-.mes-calendario h4 {
-  margin: 8px 0;
-  font-size: 18px;
-}
-
-.semana-calendario {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 12px;
-  margin: 5px 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: white;
-  font-size: 15px;
-  text-align: left;
-}
-
-.semana-calendario.disponivel {
-  border-left: 6px solid #20c933;
-}
-
-.semana-calendario.pendente {
-  border-left: 6px solid #ffd21c;
-}
-
-.semana-calendario.ocupado {
-  border-left: 6px solid #e32626;
-}
-
-.semana-calendario.disponivel {
-  cursor: pointer;
-}
-
-.semana-calendario.pendente,
-.semana-calendario.ocupado {
-  cursor: not-allowed;
-  opacity: .65;
-}
-
-#semana-escolhida {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 12px;
-}
-</style>
+<div id="disponibilidade" style="margin:12px 0;font-weight:bold;text-align:center;"></div>
 
 <script>
-const semanas2027 = [
-  ["2 maio","9 maio","disponivel"],
-  ["9 maio","16 maio","disponivel"],
-  ["16 maio","23 maio","disponivel"],
-  ["23 maio","30 maio","disponivel"],
-  ["30 maio","6 junho","disponivel"],
-
-  ["6 junho","13 junho","disponivel"],
-  ["13 junho","20 junho","disponivel"],
-  ["20 junho","27 junho","disponivel"],
-  ["27 junho","4 julho","disponivel"],
-
-  ["4 julho","11 julho","disponivel"],
-  ["11 julho","18 julho","disponivel"],
-  ["18 julho","25 julho","disponivel"],
-  ["25 julho","1 agosto","disponivel"],
-
-  ["1 agosto","8 agosto","disponivel"],
-  ["8 agosto","15 agosto","pendente"],
-  ["15 agosto","22 agosto","pendente"],
-  ["22 agosto","29 agosto","pendente"],
-  ["29 agosto","5 setembro","disponivel"],
-
-  ["5 setembro","12 setembro","disponivel"],
-  ["12 setembro","19 setembro","disponivel"],
-  ["19 setembro","26 setembro","disponivel"],
-  ["26 setembro","3 outubro","disponivel"],
-
-  ["3 outubro","10 outubro","disponivel"],
-  ["10 outubro","17 outubro","disponivel"],
-  ["17 outubro","24 outubro","disponivel"],
-  ["24 outubro","31 outubro","disponivel"],
-  ["31 outubro","7 novembro","disponivel"],
-
-  ["7 novembro","14 novembro","disponivel"],
-  ["14 novembro","21 novembro","disponivel"],
-  ["21 novembro","28 novembro","disponivel"],
-  ["28 novembro","5 dezembro","disponivel"]
+const semanasOcupadas = [];
+const semanasPendentes = [
+  ["2027-08-08","2027-08-29"]
 ];
 
-const meses = {
-  maio: [],
-  junho: [],
-  julho: [],
-  agosto: [],
-  setembro: [],
-  outubro: [],
-  novembro: []
-};
+function verificarDisponibilidade() {
+  const entrada = document.getElementById("entrada").value;
+  const saida = document.getElementById("saida").value;
+  const resultado = document.getElementById("disponibilidade");
 
-semanas2027.forEach(semana => {
-  const inicio = semana[0].split(" ")[1];
-  if (meses[inicio]) meses[inicio].push(semana);
-});
+  if (!entrada || !saida) {
+    resultado.innerHTML = "";
+    return;
+  }
 
-const nomesMeses = {
-  maio: "Maio",
-  junho: "Junho",
-  julho: "Julho",
-  agosto: "Agosto",
-  setembro: "Setembro",
-  outubro: "Outubro",
-  novembro: "Novembro"
-};
+  const inicio = new Date(entrada);
+  const fim = new Date(saida);
 
-const calendario = document.getElementById("calendario-semanas");
+  if (fim <= inicio) {
+    resultado.innerHTML = "⚠️ Escolha uma data de saída posterior à entrada.";
+    return;
+  }
 
-Object.keys(meses).forEach(mes => {
-  const bloco = document.createElement("div");
-  bloco.className = "mes-calendario";
-
-  const titulo = document.createElement("h4");
-  titulo.textContent = nomesMeses[mes];
-  bloco.appendChild(titulo);
-
-  meses[mes].forEach(semana => {
-    const botao = document.createElement("button");
-    botao.type = "button";
-    botao.className = "semana-calendario " + semana[2];
-
-    const emoji =
-      semana[2] === "disponivel" ? "🟢" :
-      semana[2] === "pendente" ? "🟡" : "🔴";
-
-    botao.textContent =
-      emoji + "  " + semana[0] + " → " + semana[1];
-
-    if (semana[2] === "disponivel") {
-      botao.onclick = () => {
-        document.getElementById("entrada").value =
-          semana[0] + " 2027";
-
-        document.getElementById("saida").value =
-          semana[1] + " 2027";
-
-        document.getElementById("semana-escolhida").textContent =
-          "Semana escolhida: " +
-          semana[0] + " → " + semana[1];
-      };
+  for (const periodo of semanasOcupadas) {
+    if (inicio < new Date(periodo[1]) && fim > new Date(periodo[0])) {
+      resultado.innerHTML = "🔴 <b>Período ocupado</b>";
+      return;
     }
+  }
 
-    bloco.appendChild(botao);
-  });
+  for (const periodo of semanasPendentes) {
+    if (inicio < new Date(periodo[1]) && fim > new Date(periodo[0])) {
+      resultado.innerHTML = "🟡 <b>Período pendente</b>";
+      return;
+    }
+  }
 
-  calendario.appendChild(bloco);
-});
+  resultado.innerHTML = "🟢 <b>Período disponível</b>";
+}
+
+document.getElementById("entrada").addEventListener("change", verificarDisponibilidade);
+document.getElementById("saida").addEventListener("change", verificarDisponibilidade);
 </script>
       
       <label for="hospedes">Número de hóspedes</label>
