@@ -668,10 +668,7 @@ function mudarFoto(direcao) {
 fotos.forEach((foto, index) => {
     foto.addEventListener('click', () => abrirFoto(index));
 
-    foto.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        abrirFoto(index);
-    }, { passive: false });
+   
 });
 </script>
 
